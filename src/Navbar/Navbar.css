@@ -1,0 +1,82 @@
+.button-row {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-weight: 100px;
+  font-size: 30px;
+  position: relative;
+  top: 15px; /* Adjusted top position */
+  z-index: 1000;
+}
+
+.menu-icon {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  visibility: hidden;
+  top: -2000px; /* Adjusted top position */
+  left: 1300px;
+}
+
+.button-row button {
+  font-size: 15px;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.button-row button:hover {
+  color: #e74848;
+}
+
+.logo1 {
+  position: relative;
+  height: 95px;
+  top: 18px; /* Adjusted top position */
+  left: 45vw;
+  z-index: 100;
+}
+
+.logo2 {
+  position: relative;
+  height: 40px;
+  left: 38.8vw;
+  top: 2px; /* Adjusted top position */
+  z-index: 101;
+}
+
+.logo3 {
+  position: relative;
+  height: 100px;
+  left: 31.5vw;
+  top: 50px; /* Adjusted top position */
+  z-index: 102;
+}
+
+.LinkTag {
+  color: white;
+  font-size: 13px;
+  text-decoration: none;
+  position: relative;
+  top: 2px;
+}
+
+.LinkTag:hover {
+  color: #e74848;
+}
+
+.classHide {
+  visibility: hidden;
+}
+
+.navbar {
+  margin: 0;
+  padding: 0;
+  height: 0px;
+}
