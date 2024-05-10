@@ -1,68 +1,77 @@
-import React, { useState } from 'react';
-import './Navbar.css';
-import './Phone.css'; // Include Phone.css for phone-specific styles
-import logo1 from './logo1.png';
-import logo2 from './logo 2.png';
-import logo3 from './logo3.png';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import Logo from './Logo';
+import styles from './Navbar.module.css';
+import { NavLink } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa'; // Correct import path for react-icons/fa
 
-function Navbar(props) {
-  const [menuOpen, setMenuOpen] = useState(false);
+const NavbarComponent = () => {
+    const navRef = useRef();
+    const [showDropdown, setShowDropdown] = useState(false);
 
-  const toggleMenu = () => {
-    var element = document.getElementById("nav0");
-    var element1 = document.getElementById("nav1");
-    setMenuOpen(!menuOpen);
-    if (menuOpen) {
-      element.classList.toggle("classHide");
-       element1.style.visibility = "visible";
-      
-    } else {
-      element1.classList.toggle("classHide");
-      element1.style.visibility = "hidden";
-    }
-  };
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
 
-  return (
-    <div className="navbar">
-      <div className="logo-container">
-        <img className="logo1" src={logo1} alt="logo1" />
-        <img className="logo2" src={logo2} alt="logo2" />
-        <img className="logo3" src={logo3} alt="logo3" />
-      </div>
-      <div className="button-row" id='nav0'>
-        <button href="#">Home</button>
-        <button href="#">Service</button>
-        <button href="#">Products</button>
-        <button href="#">Team</button>
-        <button href="#">Blogs</button>
-        <button href="#">Carrier</button>
-        <button href="#">Director</button>
-        <Link to="/about" className="LinkTag">
-          About Us
-        </Link>
-        <button href="#">Contact Us</button>
-      </div>
-      <div className="button-row1" id='nav1' hidden>
-        <button href="#" style={{backgroundColor:'transparent', color:'white',cursor:'pointer' }}>Home</button>
-        <button href="#" style={{backgroundColor:'transparent', color:'white' ,cursor:'pointer' }}>Service</button>
-        <button href="#" style={{backgroundColor:'transparent', color:'white',cursor:'pointer' }}>Products</button>
-        <button href="#" style={{backgroundColor:'transparent', color:'white',cursor:'pointer' }}>Team</button>
-        <button href="#" style={{backgroundColor:'transparent', color:'white',cursor:'pointer' }}>Blogs</button>
-        <button href="#" style={{backgroundColor:'transparent', color:'white',cursor:'pointer' }}>Carrier</button>
-        <button href="#" style={{backgroundColor:'transparent', color:'white',cursor:'pointer' }}>Director</button>
-        <Link to="/about" className="LinkTag">
-          About Us
-        </Link>
-        <button href="#" style={{backgroundColor:'transparent', color:'white'}}>Contact Us</button>
-      </div>
-      <button className="menu-icon" onClick={toggleMenu}>
-        <span style={{ display: 'block' }}>-</span>
-        <span style={{ display: 'block' }}>-</span>
-        <span style={{ display: 'block' }}>-</span>
-      </button>
-    </div>
-  );
-}
+    const hideDropdown = () => {
+        setShowDropdown(false);
+    };
 
-export default Navbar;
+    return (
+        <>
+            <nav className={styles['main-container']}>
+                <Logo />
+                <div ref={navRef} className={styles['menu-link']}>
+                    <ul>
+                    <li>
+                             <NavLink to='/home' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>Home</NavLink>
+                         </li>
+                         <li className={styles.dropdownContainer} onMouseEnter={toggleDropdown} onMouseLeave={hideDropdown}>
+                             <NavLink to='/service' className={styles["navlinks","service"]} >Service</NavLink>
+                             {showDropdown && (
+                                <div className={styles.dropdownContent}>
+                                    <NavLink to='/service/service1'>Cloud-Service</NavLink>
+                                    <NavLink to='/service/service2'>Seo-Service</NavLink>
+                                    <NavLink to='/service/service3'>Web Development</NavLink>
+                                    <NavLink to='/service/service3'>Android Development</NavLink>
+                                </div>
+                            )}
+                        </li>
+                        <li>
+                            <NavLink to='/products' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>Products</NavLink>
+                         </li>
+                         <li>
+                             <NavLink to='/team' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>Team</NavLink>
+                         </li>
+                         <li>
+                             <NavLink to='/blogs' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>Blogs</NavLink>
+                         </li>
+                         <li>
+                             <NavLink to='/carrier' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>Carrier</NavLink>
+                         </li>
+                         <li>
+                             <NavLink to='/director' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>Director</NavLink>
+                         </li>
+                         <li>
+                             <NavLink to='/aboutus' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>About us</NavLink>
+                         </li>
+                         <li>
+                             <NavLink to='/' className={(e) => { return e.isActive ? styles["gradient"] : styles["navlinks"] }}>Contact Us</NavLink>
+                         </li>
+                    </ul>
+                    <button
+                        className={`${styles['nav-btn']} ${styles['nav-close-btn']}`}
+                        onClick={toggleDropdown}>
+                        <FaTimes />
+                    </button>
+                </div>
+                <button
+                    className={styles['nav-btn']}
+                    onClick={toggleDropdown}>
+                    <FaBars />
+                </button>
+            </nav>
+        </>
+    );
+};
+
+export default NavbarComponent; // Changed the export name to match the component name

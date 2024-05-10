@@ -13,6 +13,7 @@ import About from './About_us/About';
 import Welcome from './welcome/Welcome';
 import manish from "./welcome/manish.jpg"
 import Service from './Service/Service';
+import Navbar from './Navbar/Navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <Route path="/about" element={<About />} />
         <Route path="/Welcome" element={<Welcome />} />
         <Route path="/Service" element={<Service />} />
+        <Route path="/Navbar" element={<Navbar />} />
       </Routes>
     </Router>
   </React.StrictMode>

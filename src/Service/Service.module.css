@@ -1,6 +1,6 @@
 .services{
     width: auto;
-    height: 2000px;
+    height: 2200px;
     background-color: white;
 }
 
@@ -13,7 +13,7 @@
 .servicetitle{
     position: relative;
     bottom: 170px;
-    left: 500px;
+    left: 600px;
     font-size: 40px;
     color: white;
 }
